@@ -1,0 +1,7 @@
+<h3>Товар: Мыло</h3>
+<!--<a routerLink="/details/2">Детальная информация</a>-->
+
+<button routerLink="details">Детальная информация</button>
+<button routerLink="list" [queryParams]="{'list': 1, 'enable': 'true'}">Товары</button>
+
+<router-outlet></router-outlet>
