@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'FirstEvoApp';
+  isCollapsed = false;
+  switchIndicator(): void {
+    this.isCollapsed = !this.isCollapsed;
+    if(this.isCollapsed){
+      Notify.info('Collapsed');
+    }
+    else {
+      Notify.info('Not Collapsed')
+    }
+  }
 }
