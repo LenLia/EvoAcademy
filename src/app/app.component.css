@@ -1,0 +1,15 @@
+.container {
+	display: table;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.column {
+	display: table-cell;	
+	width: 50%;
+	vertical-align: top;
+}
+
+mat-grid-tile {
+    background: lightblue;
+  }
