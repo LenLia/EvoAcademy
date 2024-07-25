@@ -11,48 +11,51 @@ export class AppComponent {
 
   randomSubscrip$!: Subscription;
   sequentiallySubscrip$!: Subscription;
-  
-  randomArray: string[]=[];
-  sequentiallyArray: number[]=[];
+
+  randomArray: string[] = [];
+  sequentiallyArray: number[] = [];
 
   enableSequentiallyStopButton = false;
   enableRandomStopButton = false;
 
 
-  enableSequentiallyFunction(){
-    const interval$ = interval(2000);
-    this.sequentiallySubscrip$ = interval$.subscribe(
-      (value) =>{
-        this.sequentiallyArray.push(value);
+  enableSequentiallyFunction() {
+    if (!this.enableSequentiallyStopButton) {
+      const interval$ = interval(2000);
+      this.sequentiallySubscrip$ = interval$.subscribe(
+        (value) => {
+          this.sequentiallyArray.push(value);
+        })
+
+      this.enableSequentiallyStopButton = true;
+    }
+  }
+
+  disableSequentiallyFunction() {
+    this.sequentiallySubscrip$.unsubscribe();
+    this.enableSequentiallyStopButton = false;
+  }
+
+
+  enableRandomFunction() {
+    if (!this.enableRandomStopButton) {
+      const interval$ = interval(2000);
+      this.randomSubscrip$ = interval$.pipe(
+        map(() => `Rundom Value:  ${Math.floor(Math.random() * 1000)}`)
+      ).subscribe((value) => {
+        this.randomArray.push(value);
       })
 
-    this.enableSequentiallyStopButton=true;
+      this.enableRandomStopButton = true;
+    }
   }
 
-  disableSequentiallyFunction(){
-    this.sequentiallySubscrip$.unsubscribe();
-    this.enableSequentiallyStopButton=false;
-  }
-
-
-  enableRandomFunction(){
-    const interval$ = interval(2000);
-    this.randomSubscrip$ = interval$.pipe(
-      map(() => `Rundom Value:  ${Math.floor(Math.random()*1000)}`)
-    ).subscribe((value) =>{
-      this.randomArray.push(value);
-    })
-
-    this.enableRandomStopButton=true;
-
-  }
-
-  disableRandomFunction(){
+  disableRandomFunction() {
     this.randomSubscrip$.unsubscribe();
-    this.enableRandomStopButton=false;
+    this.enableRandomStopButton = false;
 
   }
 
 
-  
+
 }
