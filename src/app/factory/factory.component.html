@@ -1,0 +1,23 @@
+<ng-container *ngTemplateOutlet="table"></ng-container>
+
+<ng-template #table>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>UserId </th>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Completed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let date of testData">
+                <td>{{date.userId}} </td>
+                <td>{{date.id}}</td>
+                <td>{{date.title}}</td>
+                <td>{{date.completed}}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>
