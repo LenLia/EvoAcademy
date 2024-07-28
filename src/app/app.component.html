@@ -1,0 +1,9 @@
+<input matInput placeholder="Placeholder" matInput [(ngModel)]="oneTodos" type="text"/>
+<button mat-raised-button (click)="addToDOs()">
+    Записать данные в хранилище
+</button>
+
+  <div *ngFor="let todo of array$ | async">
+    <mat-checkbox>{{ todo }}</mat-checkbox>
+  </div>
+
