@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { ApiService } from './service/api.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { InfoUsers } from './interface/info-users';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,49 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'FirstEvoApp';
+
+  constructor(private apiService: ApiService){}
+
+  public users: InfoUsers[]=[];
+
+  getUsers(){
+    this.apiService.getUsersAll().subscribe({
+      next: (res) =>{
+        console.log(res)
+      },
+      error: (err: HttpErrorResponse) =>
+        console.log('Error!!!!!')
+    })
+  }
+
+  getOneUser(){
+    this.apiService.getUsersOne('1').subscribe({
+      next: (res) =>{
+        console.log(res)
+      },
+      error: (err: HttpErrorResponse) =>
+        console.log('Error!!!!!')
+    })
+  }
+
+  getPosts(){
+    this.apiService.getPostsAll().subscribe({
+      next: (res) =>{
+        console.log(res)
+      },
+      error: (err: HttpErrorResponse) =>
+        console.log('Error!!!!!')
+    })
+  }
+
+  postUsersSign(){
+    this.apiService.postUserCreate().subscribe({
+      next: (res) =>{
+        console.log(res)
+      },
+      error: (err: HttpErrorResponse) =>
+        console.log('Error!!!!!')
+    })
+  }
+
 }
